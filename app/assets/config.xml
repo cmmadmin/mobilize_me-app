@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "org.mobilization.mentorme"
-        version   = "0.9.0.beta">
+        id        = "org.mobilization.mobilizeme"
+        version   = "0.1.0">
 
-    <name>Mentor Me</name>
+    <name>Mobilize Me</name>
 
     <description>
-        A new way to develop others.
+        A new way to mobilize others.
     </description>
 
     <author href="http://www.campusministrytoolbox.org" email="admin@mobilization.org">
-        Campus Ministry Toolbox
+        Center for Mission Mobilization
     </author>
 
     <!--

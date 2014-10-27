@@ -7,7 +7,7 @@
  * @since  
  ###
 @MM.module "Views", (Views, App, Backbone, Marionette, $, _) ->
-  application = App.MentorMe
+  application = App.MobilizeMe
   Mentee = App.Models/Mentee
   MenteeListItemView = Views.MenteeListItemView
 

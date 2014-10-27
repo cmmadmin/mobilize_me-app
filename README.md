@@ -1,4 +1,4 @@
-# Mentor Me Mobile App
+# Mobilize Me Mobile App
 
 Main languages are CoffeeScript,
 [Stylus for CSS pre-processing](http://learnboost.github.com/stylus/) and

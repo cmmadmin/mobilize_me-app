@@ -8,7 +8,7 @@
  ###
 @MM = do (Backbone, Marionette) ->
 
-  MentorMe = new Marionette.Application
+  MobilizeMe = new Marionette.Application
 
     currentUser: null
 
@@ -18,7 +18,7 @@
       # Check for not authenticated errors
       $(document).ajaxError (e, xhr, settings, exception) ->
         if (xhr.status == 401)
-          MentorMe.vent.trigger "session:notauthenticated"
+          MobilizeMe.vent.trigger "session:notauthenticated"
 
       @vent.bind "session:loaded", (sessionExists) =>
         @sessionLoaded = true
@@ -30,7 +30,7 @@
 
       @vent.bind "authentication:logged_out session:notauthenticated", =>
         @sessionLoaded = true
-        MentorMe.navigate(MentorMe.rootRoute, true) unless @isCurrentRouteRoot()
+        MobilizeMe.navigate(MobilizeMe.rootRoute, true) unless @isCurrentRouteRoot()
         @hideSplash()
 
       $(document).on "pause", =>
@@ -39,10 +39,10 @@
         @vent.trigger "app:resume"
   
     goHome: ->
-      # MentorMe.startHistory()
-      MentorMe.navigate("mentees", trigger: true)
+      # MobilizeMe.startHistory()
+      MobilizeMe.navigate("mentees", trigger: true)
     goRoot: ->
-      MentorMe.navigate(MentorMe.rootRoute, true)
+      MobilizeMe.navigate(MobilizeMe.rootRoute, true)
     # Are we at home or login page already?
     isCurrentRouteRoot: ->
       Backbone.history.fragment == "home" or Backbone.history.fragment == "login"
@@ -50,40 +50,40 @@
       if @sessionLoaded && @deviceReady
         navigator.splashscreen.hide() if navigator.splashscreen?
 
-  MentorMe.rootRoute = "home"
+  MobilizeMe.rootRoute = "home"
 
-  MentorMe.addRegions
+  MobilizeMe.addRegions
     headerRegion: "#header-region"
     mainRegion:    "#content"
     footerRegion: "#pageFooter"
     promptRegion: "#prompt-region"
 
-  MentorMe.on "initialize:before", (options) ->
-    MentorMe.environment = options.environment
+  MobilizeMe.on "initialize:before", (options) ->
+    MobilizeMe.environment = options.environment
 
-  MentorMe.addInitializer ->
+  MobilizeMe.addInitializer ->
     # Import views
-    # HomePage = MentorMe.Views.HomePage
+    # HomePage = MobilizeMe.Views.HomePage
     
-    # AppController = MentorMe.Controllers.AppController
-    AppLayout = MentorMe.Views.AppLayout
+    # AppController = MobilizeMe.Controllers.AppController
+    AppLayout = MobilizeMe.Views.AppLayout
 
     # #Import collections
-    # Mentees = MentorMe.Collections.Mentees
-    # Questions = MentorMe.Collections.Questions
-    # Editions = MentorMe.Collections.Editions
-    # Lifelists = MentorMe.Collections.Lifelists
-    # LifelistCategories = MentorMe.Collections.LifelistCategories
+    # Mentees = MobilizeMe.Collections.Mentees
+    # Questions = MobilizeMe.Collections.Questions
+    # Editions = MobilizeMe.Collections.Editions
+    # Lifelists = MobilizeMe.Collections.Lifelists
+    # LifelistCategories = MobilizeMe.Collections.LifelistCategories
 
     # # Initialize collections
     # @collections = 
     #   mentees: new Mentees()
     #   editions: new Editions()
-    #   develop_categories: new MentorMe.Entities.DevelopCategoriesCollection()
-    #   curriculums: new MentorMe.Entities.DevelopCurriculumsCollection()
+    #   develop_categories: new MobilizeMe.Entities.DevelopCategoriesCollection()
+    #   curriculums: new MobilizeMe.Entities.DevelopCurriculumsCollection()
 
     #   bootstrap: (update) ->
-    #     MentorMe.vent.trigger('bootstrap:loaded')
+    #     MobilizeMe.vent.trigger('bootstrap:loaded')
     #     @mentees.reset(update.mentees)
     #     @editions.reset(update.editions)
     #     @develop_categories.reset(update.develop_categories)
@@ -101,36 +101,36 @@
     @appLayout = new AppLayout(el: "#mentor_me_app")
     @initEvents()
 
-  MentorMe.addInitializer ->
-    MentorMe.module("HeaderApp").start()
+  MobilizeMe.addInitializer ->
+    MobilizeMe.module("HeaderApp").start()
 
-  MentorMe.addInitializer ->
+  MobilizeMe.addInitializer ->
     # sync = $.ajax(
-    #   url: MentorMe.Config.ApplicationConfig.SERVER_URL + 'users/data'
+    #   url: MobilizeMe.Config.ApplicationConfig.SERVER_URL + 'users/data'
     #   context: @collections
     # )
     # sync.then(@collections.bootstrap, @collections)
-    # # sync.then(@goHome, MentorMe)
+    # # sync.then(@goHome, MobilizeMe)
     # @collections._fetch = sync
         
-  MentorMe.reqres.setHandler "default:region", -> MentorMe.mainRegion
-  MentorMe.reqres.setHandler "concern", (concern) -> MentorMe.Concerns[concern]
+  MobilizeMe.reqres.setHandler "default:region", -> MobilizeMe.mainRegion
+  MobilizeMe.reqres.setHandler "concern", (concern) -> MobilizeMe.Concerns[concern]
 
-  MentorMe.on "initialize:after", ->
+  MobilizeMe.on "initialize:after", ->
   #   # Start Backbone router after bootstrap
-  #   MentorMe.execute "when:fetched", MentorMe.collections, =>
+  #   MobilizeMe.execute "when:fetched", MobilizeMe.collections, =>
     @startHistory()
 
-  MentorMe.vent.on "header:shown", ->
+  MobilizeMe.vent.on "header:shown", ->
     _.defer ->
-      MentorMe.mainRegion.$el.addClass('with-header')
-  MentorMe.vent.on "header:hidden", ->
+      MobilizeMe.mainRegion.$el.addClass('with-header')
+  MobilizeMe.vent.on "header:hidden", ->
     _.defer ->
-      MentorMe.mainRegion.$el.removeClass('with-header')
+      MobilizeMe.mainRegion.$el.removeClass('with-header')
 
   # Wait for device to be ready
   $(document).on "deviceready", ->
-    MentorMe.deviceReady = true
-    MentorMe.hideSplash()
+    MobilizeMe.deviceReady = true
+    MobilizeMe.hideSplash()
 
-  MentorMe
+  MobilizeMe

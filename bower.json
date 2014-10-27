@@ -1,11 +1,11 @@
 {
-  "name": "mentor_me-app",
+  "name": "mobilize_me-app",
   "version": "0.0.1",
   "homepage": "none",
   "authors": [
     "Paul Strong <lapluviosilla@gmail.com>"
   ],
-  "description": "Mentor Me Mobile App",
+  "description": "Mobilize Me Mobile App",
   "private": true,
   "ignore": [
     "**/.*",

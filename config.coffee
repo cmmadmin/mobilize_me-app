@@ -28,7 +28,7 @@ exports.config =
           'vendor/scripts/backbone.layoutmanager-0.7.5.js',
           'vendor/config/jqm-routing-patch.js',
           'vendor/config/jqm-hover-patch.js',
-          'app/MentorMe.coffee',
+          'app/MobilizeMe.coffee',
           /^app\/lib\/entities/,
           /^app\/lib\/concerns/,
           /^app\/lib\/utilities/,
