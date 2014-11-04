@@ -16,6 +16,8 @@
 
     login: (e) ->
       e.preventDefault()
+      data = Backbone.Syphon.serialize @
+      @model.set(data)
 
       @$el.find('#login-form button').button('loading');
 
