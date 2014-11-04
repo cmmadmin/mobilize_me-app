@@ -18,42 +18,43 @@
     initialize: ->
       @collection = @model.develop_items()
 
-  class SuggestedSteps.Category extends App.Views.CompositeView
-    template: 'develop/suggested_steps/category'
-    itemViewContainer: '.develop-goals'
+  class SuggestedSteps.Goals extends App.Views.CollectionView
+    # template: 'develop/suggested_steps/category'
+    # itemViewContainer: '.develop-goals'
     itemView: SuggestedSteps.Goal
 
-    ui:
-      accordionToggle: 'h3.accordion-toggle'
-      accordionBody: '.accordion-body'
-      goals: '.develop-goals'
+    # ui:
+      # accordionToggle: 'h3.accordion-toggle'
+      # accordionBody: '.accordion-body'
+      # goals: '.develop-goals'
 
-    events:
-      'click @ui.accordionToggle' : 'toggleBody'
+    # events:
+    #   'click @ui.accordionToggle' : 'toggleBody'
 
-    initialize: ->
-      goals = @model.develop_goals()
+    initialize: (options) ->
+      goals = @collection
       @collection = new App.Entities.ChosenDevelopGoalsCollection null,
         parent: -> 
           goals
+      # console.log @collection
 
-      @listenTo @, "after:item:added item:removed", (args) ->
-        if @ui.accordionBody.height() > 0
-          newHeight = @ui.goals.height()
-          @ui.accordionBody.height(newHeight)
+      # @listenTo @, "after:item:added item:removed", (args) ->
+      #   if @ui.accordionBody.height() > 0
+      #     newHeight = @ui.goals.height()
+      #     @ui.accordionBody.height(newHeight)
 
-    toggleBody: ->
-      @trigger 'category:toggled'
-      newHeight = if (@ui.accordionBody.height() > 0) then 0 else @ui.goals.height()
-      @ui.accordionBody.height(newHeight)
+    # toggleBody: ->
+    #   @trigger 'category:toggled'
+    #   newHeight = if (@ui.accordionBody.height() > 0) then 0 else @ui.goals.height()
+    #   @ui.accordionBody.height(newHeight)
 
-  class SuggestedSteps.Categories extends App.Views.CollectionView
-    itemView: SuggestedSteps.Category
-    className: 'padded-page'
+  # class SuggestedSteps.Categories extends App.Views.CollectionView
+  #   itemView: SuggestedSteps.Category
+  #   className: 'padded-page'
 
   class SuggestedSteps.Layout extends App.Views.Layout
     template: 'develop/suggested_steps/layout'
     className: 'full-page'
 
     regions:
-      accordionRegion: '#accordion-region'
+      goalsRegion: '#goals-region'

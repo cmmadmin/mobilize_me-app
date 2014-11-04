@@ -22,15 +22,24 @@
   class Show.MenuItem extends App.Views.ItemView
     template: "mentees/show/show_menuitem"
 
+    events:
+      "click" : "itemClicked"
+
     initialize: (options) ->
       @mentee = options.mentee
 
     templateHelpers:
       progress: ->
-        @mentee.active_profile().getSurveyProgress(@model.attributes.surveyKey)
+        if @model.attributes.surveyKey
+          @mentee.active_profile().getSurveyProgress(@model.attributes.surveyKey)
+        else
+          100
 
       isMax: ->
-        if @mentee.active_profile().getSurveyProgress(@model.attributes.surveyKey) == 100 then true else false 
+        if !@model.attributes.surveyKey? || @mentee.active_profile().getSurveyProgress(@model.attributes.surveyKey) == 100 then true else false 
+
+    itemClicked: (e) ->
+      @trigger 'clicked', @model
 
   class Show.MenuCategory extends App.Views.CompositeView
     template: "mentees/show/show_menucategory"
@@ -44,6 +53,10 @@
       "click .accordion-heading" : "toggleChoose"
 
     @include "Chooseable"
+
+    itemEvents:
+      "clicked": (e, c, i) ->
+        @trigger "item:clicked", i
 
     #logInfoUrl: ->
     #  console.log("hello")
@@ -76,3 +89,7 @@
       'click #Observe' : 'snapshot:observe:clicked'
       'click #menu-category-Develop' : 'develop:clicked'
       'click #Journal' : 'journal:clicked'
+
+    itemEvents:
+      'item:clicked': (e, m, i) ->
+        @trigger('menu:item:clicked', i)

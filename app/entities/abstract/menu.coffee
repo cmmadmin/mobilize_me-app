@@ -30,9 +30,9 @@
           { name: "Observe", description: "Record long-term observations about the mentee here.", surveyKey: "snapshot_observations" }
         ] }
         { name: "Develop", icon: "develop.png", items: [
-          { name: "Life List", description: "Choose aisles and shelves", surveyKey: "snapshot_self_assessment" }
-          { name: "Suggested Steps", description: "Choose cans", surveyKey: "snapshot_self_assessment" }
-          { name: "Plan", description: "View your plan and add custom cans", surveyKey: "snapshot_self_assessment" }
+          { name: "World Christian Track", description: "Choose aisles and shelves", trigger: "develop:world_track:clicked" }
+          { name: "Mobilizer Track", description: "Choose cans", trigger: "develop:mobilizer_track:clicked" }
+          { name: "Multiplier Track", description: "View your plan and add custom cans", trigger: "develop:multiplier_track:clicked" }
         ] }
       ]
 

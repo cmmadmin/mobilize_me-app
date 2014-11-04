@@ -58,6 +58,9 @@
       @listenTo showView, "journal:clicked", (args) ->
         App.vent.trigger "journal:clicked", mentee
 
+      @listenTo showView, "menu:item:clicked", (args) ->
+        App.vent.trigger(args.get('trigger'), mentee, args) if args.has('trigger')
+
       scrollComp = App.request "ion:scroll:component", showView
       @show scrollComp, region: @layout.menuRegion
 

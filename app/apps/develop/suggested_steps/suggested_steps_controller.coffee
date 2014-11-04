@@ -2,11 +2,11 @@
 
   class SuggestedSteps.Controller extends App.Controllers.Application
     initialize: (options) ->
-      { categories } = options
-      categories or= App.request "develop_category:entities"
-      parentFunc = ->
-        categories
-      chosenCategories = new App.Entities.ChosenDevelopCategoriesCollection(null, parent: parentFunc)
+      { goals } = options
+      # categories or= App.request "develop_category:entities"
+      # parentFunc = ->
+        # categories
+      # chosenCategories = new App.Entities.ChosenDevelopCategoriesCollection(null, parent: parentFunc)
 
       @layout = @getLayoutView()
       # @collectionView = @getCollectionView(chosenCategories)
@@ -15,7 +15,7 @@
       #   scrollComp.getMainView().resize()
 
       @listenTo @layout, "show", =>
-        @accordionRegion chosenCategories
+        @goalsRegion goals
 
       @show @layout
       
@@ -23,15 +23,15 @@
       # scrollComp = App.request "ion:scroll:component", @collectionView
       # @show scrollComp, options
 
-    accordionRegion: (categories) ->
-      accordionView = @getAccordionView categories
+    goalsRegion: (goals) ->
+      goalsView = @getGoalsView goals
 
-      scrollComp = App.request "ion:scroll:component", accordionView
-      @show scrollComp, region: @layout.accordionRegion
+      scrollComp = App.request "ion:scroll:component", goalsView
+      @show scrollComp, region: @layout.goalsRegion
 
-    getAccordionView: (categories) ->
-      new SuggestedSteps.Categories
-        collection: categories
+    getGoalsView: (goals) ->
+      new SuggestedSteps.Goals
+        collection: goals
 
     getLayoutView: ->
       new SuggestedSteps.Layout

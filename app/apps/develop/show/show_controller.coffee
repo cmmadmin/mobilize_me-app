@@ -16,12 +16,17 @@
         promptId: 'develop'
       ]
     initialize: (options) ->
-      { id } = options
+      { mentee_id, develop_category } = options
       @layout = @getLayoutView()
 
-      @model = App.request "mentees:entity", id 
-      @categories = App.request("develop_category:entities").where(edition_id: @model.active_profile().get('edition_id'))
-      @categories = new App.Entities.DevelopCategoriesCollection @categories
+      @mentee = App.request "mentees:entity", mentee_id 
+      category_name = switch develop_category
+        when "world_track" then "World Christian Track"
+        when "mobilizer_track" then "Mobilizer Track"
+        when "multiplier_track" then "Multiplier Track"
+        else ""
+      categories = new Backbone.Collection(App.request("develop_category:entities").where(edition_id: @mentee.active_profile().get('edition_id')))
+      @category = categories.findWhere(title: category_name)
 
       @setupChosen()
 
@@ -41,7 +46,7 @@
       # Get ids of chosen goals and items
       chosen_goals = (new App.Entities.DevelopGoalsCollection(App.Entities.DevelopGoal.all().models)).getChosenIds().sort()
       chosen_items = (new App.Entities.DevelopItemsCollection(App.Entities.DevelopItem.all().models)).getChosenIds().sort()
-      active_profile = @model.active_profile()
+      active_profile = @mentee.active_profile()
       # Get old ids in profiles
       old_goals = active_profile.get('develop_goal_ids').sort()
       old_items = active_profile.get('develop_item_ids').sort()
@@ -63,19 +68,21 @@
     lifeListRegion: ->
       new App.DevelopApp.LifeList.Controller
         region: @layout.lifeListRegion
-        categories: @categories
+        category: @category
+        # categories: @categories
 
     suggestedStepsRegion: ->
       new App.DevelopApp.SuggestedSteps.Controller
         region: @layout.stepsRegion
-        categories: @categories
+        goals: @category.develop_goals()
+        # categories: @categories
 
     planRegion: ->
       new App.DevelopApp.Plan.Controller
         region: @layout.planRegion
 
     setupChosen: ->
-      profile = @model.active_profile()
+      profile = @mentee.active_profile()
       # Chooose goals based on profile develop_goal_ids
       goals = (new App.Entities.DevelopGoalsCollection(App.Entities.DevelopGoal.all().models))
       goals.clearChosen()

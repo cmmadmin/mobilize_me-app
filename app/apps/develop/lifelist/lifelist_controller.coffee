@@ -2,7 +2,7 @@
 
   class LifeList.Controller extends App.Controllers.Application
     initialize: (options) ->
-      { categories } = options
+      { category } = options
 
       @layout = @getLayoutView()
       # @categories = App.request "develop_category:entities"
@@ -13,7 +13,7 @@
       # @show @collectionView
 
       @listenTo @layout, "show", =>
-        @accordionRegion categories
+        @goalsRegion category.develop_goals()
 
       @show @layout
 
@@ -21,15 +21,15 @@
       # scrollComp = App.request "ion:scroll:component", @collectionView
       # @show scrollComp, options
 
-    accordionRegion: (categories) ->
-      accordionView = @getAccordionView categories
+    goalsRegion: (goals) ->
+      goalsView = @getGoalsView goals
 
-      scrollComp = App.request "ion:scroll:component", accordionView
-      @show scrollComp, region: @layout.accordionRegion
+      scrollComp = App.request "ion:scroll:component", goalsView
+      @show scrollComp, region: @layout.goalsRegion
 
-    getAccordionView: (categories) ->
-      new LifeList.Categories
-        collection: categories
+    getGoalsView: (goals) ->
+      new LifeList.Goals
+        collection: goals
 
     getLayoutView: ->
       new LifeList.Layout

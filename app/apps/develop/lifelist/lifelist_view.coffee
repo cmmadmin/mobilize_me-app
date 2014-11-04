@@ -22,34 +22,34 @@
       newHeight = if (@ui.description.height() > 0) then 0 else @ui.description.height()
       @ui.description.height(newHeight)
 
-  class LifeList.Category extends App.Views.CompositeView
-    template: 'develop/lifelist/category'
-    itemViewContainer: 'ul.develop-goals'
+  class LifeList.Goals extends App.Views.CollectionView
+    # template: 'develop/lifelist/category'
+    # itemViewContainer: 'ul.develop-goals'
     itemView: LifeList.Goal
 
-    ui:
-      accordionToggle: 'h3.accordion-toggle'
-      accordionBody: '.accordion-body'
-      goals: '.develop-goals'
+    # ui:
+    #   accordionToggle: 'h3.accordion-toggle'
+    #   accordionBody: '.accordion-body'
+    #   goals: '.develop-goals'
 
-    events:
-      'click @ui.accordionToggle' : 'toggleBody'
+    # events:
+    #   'click @ui.accordionToggle' : 'toggleBody'
 
-    initialize: ->
-      @collection = @model.develop_goals()
+    # initialize: ->
+    #   @collection = @model.develop_goals()
 
-    toggleBody: ->
-      @trigger 'category:toggled'
-      newHeight = if (@ui.accordionBody.height() > 0) then 0 else @ui.goals.height()
-      @ui.accordionBody.height(newHeight)
+    # toggleBody: ->
+    #   @trigger 'category:toggled'
+    #   newHeight = if (@ui.accordionBody.height() > 0) then 0 else @ui.goals.height()
+    #   @ui.accordionBody.height(newHeight)
 
-  class LifeList.Categories extends App.Views.CollectionView
-    itemView: LifeList.Category
-    className: 'padded-page'
+  # class LifeList.Categories extends App.Views.CollectionView
+  #   itemView: LifeList.Category
+  #   className: 'padded-page'
 
   class LifeList.Layout extends App.Views.Layout
     template: "develop/lifelist/layout"
     className: 'full-page'
 
     regions:
-      accordionRegion: "#accordion-region"
+      goalsRegion: "#goals-region"
