@@ -27,9 +27,6 @@
         tool.close()
         @state[key] = null
 
-    validate: ->
-      @state.snapshot.validateState() if @state.snapshot != null
-
     snapshotProgress: ->
       scores = @edition().snapshotSurveys().map (survey) =>
         survey.profileProgress @

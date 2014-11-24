@@ -16,6 +16,12 @@
       mentee or= App.request "mentees:entity", id
       menus = App.request "menu:entities"
 
+      surveys = mentee.active_profile().edition().surveys()
+
+      surveys.each (survey) ->
+        item = new App.Entities.MenuItem({ name: survey.get('title'), survey: survey })
+        menus.first().items.add(item)
+
       @layout = @getLayoutView mentee
 
       @listenTo @layout, "show", =>
@@ -60,6 +66,8 @@
 
       @listenTo showView, "menu:item:clicked", (args) ->
         App.vent.trigger(args.get('trigger'), mentee, args) if args.has('trigger')
+        if args.has('survey')
+          App.vent.trigger "snapshot:show", mentee, args.get('survey').get('id')
 
       scrollComp = App.request "ion:scroll:component", showView
       @show scrollComp, region: @layout.menuRegion

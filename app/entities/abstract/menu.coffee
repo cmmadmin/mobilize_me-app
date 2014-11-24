@@ -25,9 +25,6 @@
     getMenus: ->
       new Entities.MenusCollection [
         { name: "Snap Shot", icon: "snapshot.png", items: [
-          { name: "Assess", description: "Self assessment performed by the mentee.", surveyKey: "snapshot_self_assessment" }
-          { name: "Explore", description: "Conversation ideas to explore together.", surveyKey: "snapshot_interactive" }
-          { name: "Observe", description: "Record long-term observations about the mentee here.", surveyKey: "snapshot_observations" }
         ] }
         { name: "Develop", icon: "develop.png", items: [
           { name: "World Christian Track", description: "Choose aisles and shelves", trigger: "develop:world_track:clicked" }

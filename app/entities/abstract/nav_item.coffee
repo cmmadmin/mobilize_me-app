@@ -44,7 +44,8 @@
     tap: ->
       super
       if @get('promptId')?
-        App.commands.execute "show:prompt", @get('promptId')
+        promptId = _.result(@attributes, 'promptId')
+        App.commands.execute "show:prompt", promptId
       $('#prompt-region').removeClass('hidden-visibility')
 
   class Entities.NavButtonsCollection extends App.Collections.Supers.Collection
