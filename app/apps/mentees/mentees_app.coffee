@@ -6,9 +6,6 @@
       "mentees" : "list"
       "mentees/new" : "_new"
       "mentees/:id/edit" : "edit"
-      "mentees/:id/assess" : "assess"
-      "mentees/:id/explore" : "explore"
-      "mentees/:id/observe" : "observe"
 
   API =
     list: ->
@@ -27,21 +24,6 @@
         id: id
         mentee: mentee
 
-    assess: (id) ->
-      new MenteesApp.Assess.Controller
-        id: id
-        region: App.appLayout.mainRegion
-
-    explore: (id) ->
-      new MenteesApp.Explore.Controller
-        id: id
-        region: App.appLayout.mainRegion
-
-    observe: (id) ->
-      new MenteesApp.Observe.Controller
-        id: id
-        region: App.appLayout.mainRegion
-
   # App.vent.on "mentee:clicked mentee:created", (mentee) ->
   #   App.navigate Routes.edit_mentee_path(mentee.id)
   #   API.edit mentee.id, mentee
@@ -53,18 +35,6 @@
   App.vent.on "edit:mentee:clicked", (mentee) ->
     App.navigate "mentees/#{mentee.id}/edit"
     API.edit mentee.id, mentee
-
-  App.vent.on "snapshot:assess:clicked", (mentee) ->
-    App.navigate "mentees/#{mentee.id}/assess"
-    API.assess mentee.id
-
-  App.vent.on "snapshot:explore:clicked", (mentee) ->
-    App.navigate "mentees/#{mentee.id}/explore"
-    API.explore mentee
-
-  App.vent.on "snapshot:observe:clicked", (mentee) ->
-    App.navigate "mentees/#{mentee.id}/observe"
-    API.observe mentee
     
   App.addInitializer ->
     new MenteesApp.Router

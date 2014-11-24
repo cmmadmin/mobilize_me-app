@@ -14,3 +14,7 @@
   App.vent.on "snapshot:show", (mentee, survey_id) ->
     App.navigate "mentees/#{mentee.id}/survey/#{survey_id}"
     API.show mentee.id, survey_id
+
+  App.addInitializer ->
+    new SnapshotApp.Router
+      controller: API
