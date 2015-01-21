@@ -33,3 +33,10 @@
         collection: Entities.DevelopItemsCollection
         inverse: 'develop_goal'
     )
+
+  API =
+    getGoals: ->
+      Entities.DevelopGoal.all()
+
+  App.reqres.setHandler "develop_goal:entities", ->
+    API.getGoals()

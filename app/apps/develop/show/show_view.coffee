@@ -1,28 +1,53 @@
 @MM.module "DevelopApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
   class Show.Layout extends App.Views.Layout
-    template: "develop/show/develop_layout"
-    className: 'full-page'
+    template: "develop/show/show_layout"
+    className: "with-banner padded-page"
 
     regions:
-      lifeListRegion: "#lifelist-region"
-      stepsRegion: "#steps-region"
-      planRegion: "#plan-region"
+      headerRegion: "#header-region"
+      menuRegion: "#menu-region"
 
-    onShow: ->
-      @swiper = new Swiper('#develop-swiper',
-        mode:'horizontal'
-        pagination: '.pagination-sd'
-      # preventClassNoSwiping: true
-        noSwiping: true
-        autoResize: true
-        releaseFormElements: false
-        moveStartThreshold: 80
-        onSlideChangeEnd: @onSlideChange
-      )
+  class Show.Header extends App.Views.ItemView
+    template: "develop/show/show_header"
 
-    onClose: ->
-      @swiper.destroy(true)
+  class Show.MenuItem extends App.Views.ItemView
+    template: "develop/show/show_menuitem"
 
-    onSlideChange: =>
-      @trigger "slidechanged", Show.Slides[@swiper.activeIndex]
+    events:
+      "click" : "itemClicked"
+
+    itemClicked: (e) ->
+      @trigger 'clicked', @model
+
+
+  class Show.MenuCategory extends App.Views.CompositeView
+    template: "develop/show/show_menucategory"
+
+    className: "accordion-group"
+    itemView: Show.MenuItem
+    itemViewContainer: ".accordion-inner"
+
+    events:
+      "click .accordion-heading" : "toggleChoose"
+
+    @include "Chooseable"
+
+    initialize: ->
+      @collection = @model.develop_items()
+
+    itemEvents: 
+      "clicked": (e, c, i) ->
+        @trigger "item:clicked", i
+
+  class Show.Menu extends App.Views.CompositeView
+    template: "develop/show/show_menu"
+
+    itemView: Show.MenuCategory
+    itemViewContainer: ".accordion"
+
+    id: "menu-inner"
+
+    itemEvents:
+      'item:clicked': (e, m, i) ->
+        @trigger('menu:item:clicked', i)

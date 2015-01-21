@@ -1,45 +1,135 @@
-#develop-swiper {
-  height: 100%;
-  width: 100%;
+// Top Banner
+#header {
 
-  .swiper-wrapper {
-    height: 100%;
-    width: 100%;
+}
+
+// Accordian
+.accordion, .menucategory {
+  cursor: pointer;
+}
+
+.accordion-group {
+  margin-bottom: rem(2);
+}
+
+.accordion-heading {
+  &.row {
+    height: rem(62);
+    padding-left: rem(22);
+    padding-top: rem(12);
+
+    h2 {
+      width: rem(200);
+      margin-top: rem(6);
+    }
   }
-
-  .swiper-slide {
-    height: 100%;
-    width: 100%;
+  .accordion-toggle {
+    display: block;
+    padding-left: rem(18);
+    font-weight: 300;
   }
-
-  .scroll-content {
-    height: inherit;
-    width: inherit;
-    position: relative
+  img {
+    max-width: rem(38);
+    max-height: rem(38);
   }
+}
 
-  #items-region{
-    .plan-item {
+.accordion-inner {
 
-      text-align: center;
+  padding-bottom: rem(9);
 
-      p {
-        color: #FFF;
+  .menuitem.row {
+
+    height: rem(75);
+    padding-left: rem(55);
+    padding-top: rem(6);
+    border-bottom: 1px solid #000;
+    position: relative;
+
+    img {
+      position: absolute;
+      height: rem(6);
+      margin-top: rem(30);
+    }
+
+    .col {
+      padding-left: 0;
+    }
+
+    .heading {
+      width: rem(170);
+    }
+
+    .menuitem-info {
+      width: 100%;
+      margin-left: rem(23);
+      margin-top: rem(6);
+      
+      .menuitem-text {
+        float: left;
+        width: 75%;
       }
 
-      .plan-item-title {
-        width: 50%;
-        margin: 0 auto
-      }
+      .menuitem-progress {
+        float: right;
+        width: 20%;
 
-      .plan-item-description {
+        .progress {
+          width: rem(50);
+          border: 1px solid #e5e5e5;
+          padding: rem(10);
+          float: right;
+        }
+      }
+    }
+
+    .progressbar-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      progress[value] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+
+        height: rem(2);
+        margin: 0;
+        width: 100%;
+
+        color: #EC008C;
+      }
+      progress[value]::-webkit-progress-value {
+        background-color: #EC008C;
+      }
+      progress[value]::-webkit-progress-bar {
+        background-color: transparent;
+      }
+      progress[value]::-moz-progress-bar {
+        background-color: #EC008C;
       }
     }
   }
 }
 
-#accordion-region {
-  height: 100%
+.accordion-body {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  @include transition( height 0.35s ease );
+}
+
+.active .accordion-body {
+  height: auto;
+}
+
+$section-bkgrnd-color: black;
+.menucategory { background-color: $section-bkgrnd-color; }
+
+#menu-inner {
+  margin: 0 rem(12) 0 rem(12);
 }
 
 .pagination-sd {
