@@ -30,7 +30,7 @@
       @show @layout
 
     headerRegion: (category) ->
-      headerView = @getHeaderView (category)
+      headerView = @getHeaderView category
       @show headerView, region: @layout.headerRegion
 
     menuRegion: (mentee, develop_category, goals) ->

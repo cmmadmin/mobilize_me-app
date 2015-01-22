@@ -31,8 +31,15 @@
     )
 
   API =
-    getItems: ->
+    getDevelopItems: ->
       Entities.DevelopItem.all()
 
+    getDevelopItem: (id) ->
+      developItem = App.Entities.DevelopItem._all.get(id)
+      developItem
+
   App.reqres.setHandler "develop_item:entities", ->
-    API.getItems()
+    API.getDevelopItems()
+
+  App.reqres.setHandler "develop_item:entity", (id) ->
+    API.getDevelopItem id

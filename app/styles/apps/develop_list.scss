@@ -1,0 +1,160 @@
+#develop-list-layout {
+  // Top Banner
+  #header-region {
+    padding-top: rem(24);
+  }
+
+  // Accordian
+  .accordion, .menucategory {
+    cursor: pointer;
+  }
+
+  .accordion-group {
+    margin-bottom: rem(2);
+  }
+
+  .accordion-heading {
+    &.row {
+      height: rem(62);
+      padding-left: rem(22);
+      padding-top: rem(12);
+
+      h2 {
+        width: rem(260);
+        margin-top: rem(6);
+      }
+    }
+    .accordion-toggle {
+      display: block;
+      padding-left: rem(18);
+      font-weight: 300;
+    }
+    img {
+      max-width: rem(38);
+      max-height: rem(38);
+    }
+  }
+
+  .accordion-inner {
+
+    padding-bottom: rem(9);
+
+    .menuitem.row {
+
+      height: rem(75);
+      padding-left: rem(55);
+      padding-top: rem(6);
+      border-bottom: 1px solid #000;
+      position: relative;
+
+      img {
+        position: absolute;
+        height: rem(6);
+        margin-top: rem(30);
+      }
+
+      .col {
+        padding-left: 0;
+      }
+
+      .heading {
+        width: rem(170);
+      }
+
+      .menuitem-info {
+        width: 100%;
+        margin-left: rem(23);
+        margin-top: rem(6);
+        
+        .menuitem-text {
+          float: left;
+          width: 75%;
+        }
+
+        .menuitem-progress {
+          float: right;
+          width: 20%;
+
+          .progress {
+            width: rem(50);
+            border: 1px solid #e5e5e5;
+            padding: rem(10);
+            float: right;
+          }
+        }
+      }
+
+      .progressbar-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        progress[value] {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border: none;
+
+          height: rem(2);
+          margin: 0;
+          width: 100%;
+
+          color: #EC008C;
+        }
+        progress[value]::-webkit-progress-value {
+          background-color: #EC008C;
+        }
+        progress[value]::-webkit-progress-bar {
+          background-color: transparent;
+        }
+        progress[value]::-moz-progress-bar {
+          background-color: #EC008C;
+        }
+      }
+    }
+  }
+
+  .accordion-body {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    @include transition( height 0.35s ease );
+  }
+
+  .active .accordion-body {
+    height: auto;
+  }
+
+  $section-bkgrnd-color: black;
+  .menucategory { background-color: $section-bkgrnd-color; }
+
+  #menu-inner {
+    margin: 0 rem(12) 0 rem(12);
+  }
+
+  .pagination-sd {
+    text-align: center;
+  }
+
+  .pagination-sd .swiper-pagination-switch {
+    border-radius: rem(5);
+    width: rem(5);
+    height: rem(5);
+    display: inline-block;
+    margin: 0 rem(5);
+  }
+
+  .category-bar {
+    background-color: black;
+    height: $bar-height;
+    line-height: $bar-height;
+    margin: 3px 0 0 0;
+    h3 { line-height: inherit }
+  }
+
+  .develop-item-link {
+    font-size: rem(20);
+    line-height: rem(20);
+  }
+}

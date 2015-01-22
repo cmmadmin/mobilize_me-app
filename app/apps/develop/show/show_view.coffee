@@ -2,8 +2,20 @@
 
   class Show.Layout extends App.Views.Layout
     template: "develop/show/show_layout"
-    className: "with-banner padded-page"
+    className: "full-page padded-page"
 
     regions:
       headerRegion: "#header-region"
-      menuRegion: "#menu-region"
+      goalRegion: "#goal-region"
+      itemRegion: "#item-region"
+
+  class Show.Header extends App.Views.ItemView
+    template: "develop/show/show_header"
+
+  class Show.Goal extends App.Views.ItemView
+    template: "develop/show/show_goal"
+    className: "develop-goal-container"
+
+  class Show.Item extends App.Views.ItemView
+    template: "develop/show/show_item"
+    className: "develop-item-content"

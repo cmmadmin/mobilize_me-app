@@ -1,0 +1,28 @@
+#develop-show-layout {
+
+  #header-region {
+    height: rem(100);
+
+    h2 {
+      padding-top: rem(24);
+    }
+  }
+
+  .develop-goal-container {
+    height: rem(62);
+    padding-left: rem(22);
+    padding-top: rem(12);
+    background-color: #000;
+
+    h2 {
+      margin-top: rem(6);
+    }
+  }
+
+  .develop-item-content {
+    padding-left: rem(22);
+    padding-top: rem(12);
+    padding-bottom: rem(12);
+    border-bottom: rem(1) #333 solid;
+  }
+}
