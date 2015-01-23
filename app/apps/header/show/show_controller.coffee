@@ -10,6 +10,9 @@
         @leftButtonsRegion navItem.get('leftButtons')
         @rightButtonsRegion navItem.get('rightButtons')
 
+        if navItem.get('showMentee')
+          @centerRegion @getMenteeHeaderView()
+
       @show @layout
 
     leftButtonsRegion: (buttons) ->
@@ -20,9 +23,17 @@
       buttonsView = @getNavButtonsView(buttons)
       @show buttonsView, region: @layout.rightButtonsRegion
 
+    centerRegion: (view) ->
+      @show view, region: @layout.centerRegion
+
     getHeaderView: ->
       new Show.Header
 
     getNavButtonsView: (buttons) ->
       new Show.NavButtons
         collection: buttons
+
+    getMenteeHeaderView: ->
+      mentee = App.request "state:get", "current:mentee"
+      new Show.MenteeHeader
+        model: mentee

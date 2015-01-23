@@ -10,6 +10,7 @@
         promptId: =>
           'snapshot_' + @survey.get('title').toLowerCase().split(' ').join('_')
       ]
+      showMentee: true
 
     initialize: (options) ->
       { id, mentee_id } = options

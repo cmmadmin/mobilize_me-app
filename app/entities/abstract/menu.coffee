@@ -27,9 +27,9 @@
         { name: "Snap Shot", icon: "snapshot.png", items: [
         ] }
         { name: "Develop", icon: "develop.png", items: [
-          { name: "World Christian Track", description: "Choose aisles and shelves", trigger: "develop:world_track:clicked" }
-          { name: "Mobilizer Track", description: "Choose cans", trigger: "develop:mobilizer_track:clicked" }
-          { name: "Multiplier Track", description: "View your plan and add custom cans", trigger: "develop:multiplier_track:clicked" }
+          { name: "World Christian Track", description: "Moving from Growing Christian to World Christian", trigger: "develop:world_track:clicked" }
+          { name: "Mobilizer Track", description: "Moving from World Christian to Mobilizer", trigger: "develop:mobilizer_track:clicked" }
+          { name: "Multiplier Track", description: "Multiplying More Mobilizers", trigger: "develop:multiplier_track:clicked" }
         ] }
       ]
 

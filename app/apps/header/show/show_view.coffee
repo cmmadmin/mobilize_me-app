@@ -5,6 +5,7 @@
     regions:
       leftButtonsRegion: '#nav-left-buttons'
       rightButtonsRegion: '#nav-right-buttons'
+      centerRegion: "#center-region"
 
   class Show.NavButton extends App.Views.ItemView
     template: "header/show/nav_button"
@@ -24,3 +25,6 @@
   class Show.NavButtons extends App.Views.CollectionView
     itemView: Show.NavButton
     className: "buttons"
+
+  class Show.MenteeHeader extends App.Views.ItemView
+    template: "header/show/mentee"

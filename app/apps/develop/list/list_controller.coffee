@@ -9,6 +9,7 @@
         type: 'Info'
         promptId: 'develop'
       ]
+      showMentee: true
 
     initialize: (options) ->
       { mentee_id, develop_category } = options

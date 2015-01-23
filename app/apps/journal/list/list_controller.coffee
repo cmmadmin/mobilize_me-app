@@ -9,6 +9,7 @@
         type: 'Info'
         promptId: 'journal'
       ]
+      showMentee: true
 
     initialize: (options) ->
       { mentee } = options

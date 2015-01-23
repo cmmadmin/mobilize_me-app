@@ -19,6 +19,11 @@
     className: "mentee item item-dark item-thumbnail-left"
     attributes: ->
       href: "#mentees/" + @model.id
+    events:
+      "click": "onClick"
+
+    onClick: (e) ->
+      App.vent.trigger "mentee:selected", @model
 
   class List.Mentees extends App.Views.CompositeView
     template: "mentees/list/mentees"

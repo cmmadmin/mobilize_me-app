@@ -15,6 +15,7 @@
   #     controller: API
   Services.addInitializer ->
     _serviceInstances.push new Services.Session
+    _serviceInstances.push new Services.State
 
   Services.addFinalizer ->
     _.each _serviceInstances, (service) ->
