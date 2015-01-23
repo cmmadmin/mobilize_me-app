@@ -30,6 +30,7 @@
         @headerRegion @category
         @goalRegion @goal
         @itemRegion @develop_item
+        @footerRegion @mentee
 
       @show @layout
 
@@ -45,6 +46,10 @@
       itemView = @getItemView develop_item
       @show itemView, region: @layout.itemRegion
 
+    footerRegion: (mentee) ->
+      footerView = @getFooterView mentee
+      @show footerView, region: @layout.footerRegion
+
     getLayoutView: ->
       new Show.Layout
 
@@ -59,3 +64,7 @@
     getItemView: (develop_item) ->
       new Show.Item
         model: develop_item
+
+    getFooterView: (mentee) ->
+      new Show.Footer
+        model: mentee

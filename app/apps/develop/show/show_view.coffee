@@ -8,6 +8,7 @@
       headerRegion: "#header-region"
       goalRegion: "#goal-region"
       itemRegion: "#item-region"
+      footerRegion: "#footer-region"
 
   class Show.Header extends App.Views.ItemView
     template: "develop/show/show_header"
@@ -19,3 +20,7 @@
   class Show.Item extends App.Views.ItemView
     template: "develop/show/show_item"
     className: "develop-item-content"
+
+  class Show.Footer extends App.Views.ItemView
+    template: "develop/show/show_footer"
+    className: "bar bar-footer bar-balanced"
